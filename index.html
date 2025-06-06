@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Feliz Aniversário, Amor!</title>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
@@ -27,8 +31,9 @@
       display: flex;
       justify-content: center;
       background-color: #ffb3cc;
-      position: relative;
-      z-index: 2;
+      position: sticky;
+      top: 0;
+      z-index: 3;
     }
 
     nav a {
@@ -43,14 +48,10 @@
     }
 
     section {
-      padding: 2rem;
-      display: none;
+      padding: 4rem 2rem;
+      min-height: 100vh;
       position: relative;
       z-index: 2;
-    }
-
-    section.active {
-      display: block;
     }
 
     .card {
@@ -97,12 +98,12 @@
   </header>
 
   <nav>
-    <a href="#" onclick="showSection('inicio')">Início</a>
-    <a href="#" onclick="showSection('texto')">Texto</a>
-    <a href="#" onclick="showSection('historia')">Nossa História</a>
+    <a href="#inicio">Início</a>
+    <a href="#texto">Texto</a>
+    <a href="#historia">Nossa História</a>
   </nav>
 
-  <section id="inicio" class="active">
+  <section id="inicio">
     <div class="card">
       <h2>Bem-vinda, minha linda! 🌸</h2>
       <p>Hoje é um dia muito especial, o dia em que o mundo ficou mais bonito com a sua chegada. 💕</p>
@@ -130,13 +131,6 @@
   </section>
 
   <script>
-    function showSection(id) {
-      document.querySelectorAll('section').forEach(section => {
-        section.classList.remove('active');
-      });
-      document.getElementById(id).classList.add('active');
-    }
-
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
@@ -152,7 +146,7 @@
 
     // Contador ao vivo
     function atualizarContador() {
-      const inicio = new Date("2025-01-12T00:00:00"); // <-- Altere aqui para a data real
+      const inicio = new Date("2025-01-12T00:00:00"); // Altere se necessário
       const agora = new Date();
 
       let totalSegundos = Math.floor((agora - inicio) / 1000);
