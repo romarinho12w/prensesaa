@@ -4,47 +4,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Feliz Aniversário, Amor!</title>
+
+  <!-- Fonte Dancing Script adicionada -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
   <style>
     html {
       scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background: #ffe6f0;
+      background: #fff9e6;
       color: #333;
       overflow-x: hidden;
+      transition: background-color 0.8s, color 0.8s;
+    }
+
+    /* Títulos com fonte romântica */
+    h1, h2 {
+      font-family: 'Dancing Script', cursive;
     }
 
     header {
-      background-color: #ff66a3;
+      background-color: #ffcc00;
       color: white;
       padding: 1rem 2rem;
       text-align: center;
       position: relative;
       z-index: 2;
+      transition: background-color 0.8s;
     }
 
     nav {
       display: flex;
       justify-content: center;
-      background-color: #ffb3cc;
+      flex-wrap: wrap;
+      background-color: #ffe066;
       position: sticky;
       top: 0;
       z-index: 3;
+      padding: 0.5rem 1rem;
+      overflow-x: auto;
+      gap: 0.5rem;
+      -webkit-overflow-scrolling: touch;
     }
 
     nav a {
-      padding: 1rem;
+      flex-shrink: 0;
+      padding: 1rem 1.5rem;
       text-decoration: none;
-      color: white;
+      color: #333;
       font-weight: bold;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+      white-space: nowrap;
     }
 
     nav a:hover {
-      background-color: #ff80bf;
+      background-color: #ffdb4d;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        justify-content: flex-start;
+        padding: 0.5rem;
+      }
+
+      nav a {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+      }
     }
 
     section {
@@ -58,16 +90,17 @@
       background: white;
       padding: 2rem;
       border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(255, 204, 0, 0.3);
       max-width: 700px;
       margin: auto;
       text-align: center;
+      transition: background 0.8s, color 0.8s, box-shadow 0.8s;
     }
 
     .heart {
       position: fixed;
       top: -10px;
-      color: #ff3399;
+      color: #ff6699;
       font-size: 24px;
       animation: fall linear infinite;
       z-index: 1;
@@ -87,26 +120,48 @@
 
     #contador {
       font-size: 1.8rem;
-      color: #e60073;
+      color: #cc9900;
       margin: 1rem 0;
+    }
+
+    .btn-romantico {
+      background: #ffd633;
+      color: #333;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-romantico:hover {
+      background: #ffcc00;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Feliz Aniversário, Meu Amor! 🎉💖</h1>
+    <h1>Feliz Aniversário, Meu Amor! 🎉💛</h1>
   </header>
+
+  <div style="text-align: center; margin: 1rem;">
+    <button onclick="modoRomantico(event)" id="romanticButton" class="btn-romantico">
+      Ativar Jantar à Luz de Velas 🕯️
+    </button>
+  </div>
 
   <nav>
     <a href="#inicio">Início</a>
     <a href="#texto">Texto</a>
     <a href="#historia">Nossa História</a>
+    <a href="#fotos">Fotos</a>
   </nav>
 
   <section id="inicio">
     <div class="card">
-      <h2>Bem-vinda, minha linda! 🌸</h2>
-      <p>Hoje é um dia muito especial, o dia em que o mundo ficou mais bonito com a sua chegada. 💕</p>
+      <h2>Bem-vinda, minha linda! 🌼</h2>
+      <p>Hoje é um dia muito especial, o dia em que o mundo ficou mais bonito com a sua chegada. 💛</p>
       <p>Prepare-se para se emocionar com algumas palavras que vêm direto do meu coração.</p>
     </div>
   </section>
@@ -117,7 +172,7 @@
       <p>Amor, neste dia tão especial, quero te lembrar do quanto você é incrível. 
          Cada momento ao seu lado é uma dádiva, e cada sorriso seu ilumina o meu mundo. ✨</p>
       <p>Desejo que todos os seus sonhos se realizem, e que a gente possa continuar escrevendo juntos essa linda história que é o nosso amor. 💞</p>
-      <p>Feliz aniversário! Te amo mais do que palavras podem dizer! ❤️🎂</p>
+      <p>Feliz aniversário! Te amo mais do que palavras podem dizer! 💛🎂</p>
     </div>
   </section>
 
@@ -130,48 +185,185 @@
     </div>
   </section>
 
-  <script>
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerText = "💖";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 3 + Math.random() * 2 + "s";
-      heart.style.fontSize = (16 + Math.random() * 24) + "px";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
+  <section id="fotos">
+  <div class="card">
+    <h2>Nossos Momentos 📸🌞</h2>
+    <div class="gallery">
+      <div class="img-container">
+        <img src="https://i.postimg.cc/VrGGqczB/foto1.jpg" alt="Nosso momento 1" class="img-card">
+        <p class="img-caption">𝒯𝐼𝐿𝒟𝐸</p>
+      </div>
+      <div class="img-container">
+        <img src="https://i.postimg.cc/t7cv7yS9/foto2.jpg" alt="Nosso momento 2" class="img-card">
+        <p class="img-caption">𝐿𝐸𝐸𝒰</p>
+      </div>
+      <div class="img-container">
+        <img src="https://i.postimg.cc/qNVmXwHY/foto3.jpg" alt="Nosso momento 3" class="img-card">
+        <p class="img-caption">𝒯𝒪𝒱𝐸</p>
+      </div>
+      <div class="img-container">
+        <img src="https://i.postimg.cc/7J5BXQ6v/foto4.jpg" alt="Nosso momento 4" class="img-card">
+        <p class="img-caption">Momento Especial 4</p>
+      </div>
+      <div class="img-container">
+        <img src="https://i.postimg.cc/njcS9Lfh/foto5.jpg" alt="Nosso momento 5" class="img-card">
+        <p class="img-caption">𝒫𝐸𝑅𝐼𝒢𝒪𝒮𝒜</p>
+      </div>
+      <div class="img-container">
+        <img src="https://i.postimg.cc/Th1HRhck/foto6.jpg" alt="Nosso momento 6" class="img-card">
+        <p class="img-caption">𝑀𝒜𝒥𝒰</p>
+      </div>
+      <div class="img-container">
+        <img src="https://i.postimg.cc/hf7ydw6T/foto7.jpg" alt="Nosso momento 7" class="img-card">
+        <p class="img-caption">𝒫𝐸𝒫𝐸𝐸𝐸𝐸</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+
+  .img-container {
+    text-align: center;
+  }
+
+  .img-card {
+    border: 8px solid gold;
+    border-radius: 50%;
+    box-shadow: 0 0 20px orange;
+    width: 100%;
+    max-width: 180px;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .img-card:hover {
+    transform: scale(1.05);
+  }
+
+  .img-caption {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #333;
+  }
+
+  @media (max-width: 768px) {
+    .img-card {
+      max-width: 140px;
+      height: 140px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .img-card {
+      max-width: 100px;
+      height: 100px;
     }
 
-    setInterval(createHeart, 300);
-
-    // Contador ao vivo
-    function atualizarContador() {
-      const inicio = new Date("2025-01-12T00:00:00"); // Altere se necessário
-      const agora = new Date();
-
-      let totalSegundos = Math.floor((agora - inicio) / 1000);
-
-      const anos = Math.floor(totalSegundos / (365.25 * 24 * 3600));
-      totalSegundos %= Math.floor(365.25 * 24 * 3600);
-
-      const meses = Math.floor(totalSegundos / (30.44 * 24 * 3600));
-      totalSegundos %= Math.floor(30.44 * 24 * 3600);
-
-      const dias = Math.floor(totalSegundos / (24 * 3600));
-      totalSegundos %= 24 * 3600;
-
-      const horas = Math.floor(totalSegundos / 3600);
-      totalSegundos %= 3600;
-
-      const minutos = Math.floor(totalSegundos / 60);
-      const segundos = totalSegundos % 60;
-
-      const texto = `${anos} ano(s), ${meses} mês(es), ${dias} dia(s), ${horas}h ${minutos}m ${segundos}s`;
-      document.getElementById("contador").textContent = texto;
+    .img-caption {
+      font-size: 0.8rem;
     }
+  }
+</style>
 
-    setInterval(atualizarContador, 1000);
-    atualizarContador();
-  </script>
+<script>
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = 3 + Math.random() * 2 + "s";
+    heart.style.fontSize = (16 + Math.random() * 24) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }
+  setInterval(createHeart, 300);
+
+  function atualizarContador() {
+    const inicio = new Date("2025-01-12T00:00:00");
+    const agora = new Date();
+
+    let totalSegundos = Math.floor((agora - inicio) / 1000);
+
+    const anos = Math.floor(totalSegundos / (365.25 * 24 * 3600));
+    totalSegundos %= Math.floor(365.25 * 24 * 3600);
+
+    const meses = Math.floor(totalSegundos / (30.44 * 24 * 3600));
+    totalSegundos %= Math.floor(30.44 * 24 * 3600);
+
+    const dias = Math.floor(totalSegundos / (24 * 3600));
+    totalSegundos %= 24 * 3600;
+
+    const horas = Math.floor(totalSegundos / 3600);
+    totalSegundos %= 3600;
+
+    const minutos = Math.floor(totalSegundos / 60);
+    const segundos = totalSegundos % 60;
+
+    const texto = `${anos} ano(s), ${meses} mês(es), ${dias} dia(s), ${horas}h ${minutos}m ${segundos}s`;
+    document.getElementById("contador").textContent = texto;
+  }
+
+  setInterval(atualizarContador, 1000);
+  atualizarContador();
+
+  let romanticoAtivo = false;
+
+  function modoRomantico(event) {
+    romanticoAtivo = !romanticoAtivo;
+    const body = document.body;
+    const cards = document.querySelectorAll('.card');
+    const navHeader = document.querySelectorAll("nav, header");
+    const button = event.currentTarget;
+    const imagens = document.querySelectorAll("img");
+
+    if (romanticoAtivo) {
+      body.style.backgroundColor = "#1a001a";
+      body.style.color = "#ffe6f0";
+
+      cards.forEach(el => {
+        el.style.background = "#330033";
+        el.style.color = "#ffe6f0";
+        el.style.boxShadow = "0 0 20px #ff66a3";
+      });
+
+      navHeader.forEach(el => {
+        el.style.backgroundColor = "#4d004d";
+      });
+
+      imagens.forEach(img => {
+        img.style.filter = "brightness(0.8)";
+      });
+
+      button.textContent = "Desativar Jantar à Luz de Velas ✨";
+    } else {
+      body.style.backgroundColor = "#fff9e6";
+      body.style.color = "#333";
+
+      cards.forEach(el => {
+        el.style.background = "white";
+        el.style.color = "#333";
+        el.style.boxShadow = "0 4px 12px rgba(255, 204, 0, 0.3)";
+      });
+
+      navHeader.forEach(el => {
+        el.style.backgroundColor = el.tagName === "NAV" ? "#ffe066" : "#ffcc00";
+      });
+
+      imagens.forEach(img => {
+        img.style.filter = "none";
+      });
+
+      button.textContent = "Ativar Jantar à Luz de Velas 🕯️";
+    }
+  }
+</script>
 </body>
 </html>
