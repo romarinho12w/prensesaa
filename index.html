@@ -138,9 +138,100 @@
     .btn-romantico:hover {
       background: #ffcc00;
     }
+
+    /* Estilos da Tela de Bloqueio */
+    #telaBloqueio {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, #6a0dad 50%, #ffd700 50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+    }
+
+    #temporizador {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      text-shadow: 2px 2px 5px #330066;
+    }
+
+    #botaoSenha {
+      background: #330066cc;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-bottom: 1rem;
+      transition: background 0.3s;
+    }
+
+    #botaoSenha:hover {
+      background: #551a8bcc;
+    }
+
+    #formSenha {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #inputSenha {
+      padding: 0.8rem 1rem;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 1rem;
+      text-align: center;
+      width: 220px;
+      outline: none;
+    }
+
+    #confirmarSenha {
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      border: none;
+      background: #330066cc;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #confirmarSenha:hover {
+      background: #551a8bcc;
+    }
+
+    #mensagemErro {
+      color: #ff6666;
+      margin-top: 0.8rem;
+      font-weight: bold;
+      display: none;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Tela de Bloqueio -->
+  <div id="telaBloqueio">
+    <div id="temporizador">Carregando...</div>
+    <button id="botaoSenha">ou Hackeie meu coração💘🙈</button>
+    <form id="formSenha" onsubmit="return false;">
+      <input type="password" id="inputSenha" placeholder="Digite a senha" autocomplete="off" />
+      <button id="confirmarSenha">Confirmar</button>
+      <div id="mensagemErro">Senha incorreta. Tente novamente.</div>
+    </form>
+  </div>
+
   <header>
     <h1>Feliz Aniversário, Meu Amor! 🎉💛</h1>
   </header>
@@ -156,6 +247,7 @@
     <a href="#texto">Texto</a>
     <a href="#historia">Nossa História</a>
     <a href="#fotos">Fotos</a>
+    <a href="#coisas">Coisas que amo em você</a>
   </nav>
 
   <section id="inicio">
@@ -224,6 +316,30 @@
   </div>
 </section>
 
+<section id="coisas"></section>
+<div class="card">
+      <h2>COISAS QUE AMO EM VOCÊ 💘</h2>
+      <ul style="list-style: none; padding-left: 0; text-align: left; max-width: 500px; margin: 2rem auto;">
+        <li>💛 seu cabelo</li>
+        <li>💛 sua boca</li>
+        <li>💛 Seu jeitinho único</li>
+        <li>💛 Como você é doida e perfeita ao mesmo tempo</li>
+        <li>💛 seus olhinhos que sempre me ipzotizam quando você manda foto</li>
+        <li>💛 seu pessimo humor que me faz rir</li>
+        <li>💛 O carinho com os bichinhos</li>
+        <li>💛 amo quando você é todalmente boila e fala mil vezes que me ama</li>
+        <li>💛 amo quando me pede pra escolher a cor da unha</li>
+        <li>💛 amo quando me manda fotos aleatorias</li>
+      </ul>
+      <p style="margin-top: 1rem;">na real amo tudo em você, desde a primeira conversa soube que era você que seria a mulher que eu mais amaria e dedicaria cada segundo do meu tempo, 
+        o foda é que essa distancia atrapalha, queria estar com você, sentir você, tocar, irritar, dengar, fazer coisas muito bregas... 
+        que eu sei que você ama, mas enquanto isso continuo sendo 100% doido por você, não vou desistir da gente, sei que não sou o melhor namorado do mundo mas quero todo dia tentar ser 
+        perfeito pra você, te amo muito minha princesa. e to de olho ta ? 👀👇💫</p>
+
+        <img src="https://i.postimg.cc/KvcHg5Zs/joe-goldberg-wallpaper.jpg" alt="to de olho" />
+    </div>
+  </section>
+
 <style>
   .gallery {
     display: grid;
@@ -277,6 +393,7 @@
 </style>
 
 <script>
+  // Corações caindo
   function createHeart() {
     const heart = document.createElement("div");
     heart.className = "heart";
@@ -289,6 +406,7 @@
   }
   setInterval(createHeart, 300);
 
+  // Contador da história
   function atualizarContador() {
     const inicio = new Date("2025-01-12T00:00:00");
     const agora = new Date();
@@ -317,56 +435,91 @@
   setInterval(atualizarContador, 1000);
   atualizarContador();
 
+  // Modo romântico
   let romanticoAtivo = false;
 
   function modoRomantico(event) {
+    event.preventDefault();
     romanticoAtivo = !romanticoAtivo;
     const body = document.body;
-    const cards = document.querySelectorAll('.card');
-    const navHeader = document.querySelectorAll("nav, header");
-    const button = event.currentTarget;
-    const imagens = document.querySelectorAll("img");
+    const btn = document.getElementById("romanticButton");
 
     if (romanticoAtivo) {
-      body.style.backgroundColor = "#1a001a";
-      body.style.color = "#ffe6f0";
-
-      cards.forEach(el => {
-        el.style.background = "#330033";
-        el.style.color = "#ffe6f0";
-        el.style.boxShadow = "0 0 20px #ff66a3";
-      });
-
-      navHeader.forEach(el => {
-        el.style.backgroundColor = "#4d004d";
-      });
-
-      imagens.forEach(img => {
-        img.style.filter = "brightness(0.8)";
-      });
-
-      button.textContent = "Desativar Jantar à Luz de Velas ✨";
+      body.style.backgroundColor = "#330066";
+      body.style.color = "#ffd633";
+      document.querySelector("header").style.backgroundColor = "#660099";
+      document.querySelector("nav").style.backgroundColor = "#551a8b";
+      btn.textContent = "Desativar Jantar à Luz de Velas 🕯️";
     } else {
       body.style.backgroundColor = "#fff9e6";
       body.style.color = "#333";
-
-      cards.forEach(el => {
-        el.style.background = "white";
-        el.style.color = "#333";
-        el.style.boxShadow = "0 4px 12px rgba(255, 204, 0, 0.3)";
-      });
-
-      navHeader.forEach(el => {
-        el.style.backgroundColor = el.tagName === "NAV" ? "#ffe066" : "#ffcc00";
-      });
-
-      imagens.forEach(img => {
-        img.style.filter = "none";
-      });
-
-      button.textContent = "Ativar Jantar à Luz de Velas 🕯️";
+      document.querySelector("header").style.backgroundColor = "#ffcc00";
+      document.querySelector("nav").style.backgroundColor = "#ffe066";
+      btn.textContent = "Ativar Jantar à Luz de Velas 🕯️";
     }
   }
+
+  // Tela de bloqueio com temporizador
+
+  const telaBloqueio = document.getElementById('telaBloqueio');
+  const temporizador = document.getElementById('temporizador');
+  const botaoSenha = document.getElementById('botaoSenha');
+  const formSenha = document.getElementById('formSenha');
+  const inputSenha = document.getElementById('inputSenha');
+  const confirmarSenha = document.getElementById('confirmarSenha');
+  const mensagemErro = document.getElementById('mensagemErro');
+
+  // Função para atualizar o temporizador até a meia-noite
+  function atualizarTemporizador() {
+    const agora = new Date();
+    // próxima meia-noite
+    const meiaNoite = new Date();
+    meiaNoite.setHours(24, 0, 0, 0);
+
+    const diff = meiaNoite - agora;
+
+    if(diff <= 0) {
+      // desbloquear tela
+      telaBloqueio.style.display = 'none';
+      clearInterval(intervaloTemporizador);
+      return;
+    }
+
+    const segundos = Math.floor(diff / 1000) % 60;
+    const minutos = Math.floor(diff / 1000 / 60) % 60;
+    const horas = Math.floor(diff / 1000 / 60 / 60);
+
+    temporizador.textContent = `Acesso liberado em: ${horas.toString().padStart(2,'0')}:${minutos.toString().padStart(2,'0')}:${segundos.toString().padStart(2,'0')}`;
+  }
+
+  let intervaloTemporizador = setInterval(atualizarTemporizador, 1000);
+  atualizarTemporizador();
+
+  // Mostrar form de senha ao clicar no botão
+  botaoSenha.addEventListener('click', () => {
+    formSenha.style.display = 'flex';
+    botaoSenha.style.display = 'none';
+    inputSenha.focus();
+  });
+
+  // Verificar senha ao clicar no confirmar
+  confirmarSenha.addEventListener('click', () => {
+    if (inputSenha.value === 'branquela') {
+      telaBloqueio.style.display = 'none';
+    } else {
+      mensagemErro.style.display = 'block';
+      inputSenha.value = '';
+      inputSenha.focus();
+    }
+  });
+
+  // Também permitir submit no Enter dentro do input
+  inputSenha.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      confirmarSenha.click();
+    }
+  });
 </script>
+
 </body>
 </html>
